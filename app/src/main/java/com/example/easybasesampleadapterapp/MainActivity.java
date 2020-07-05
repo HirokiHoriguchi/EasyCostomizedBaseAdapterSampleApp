@@ -1,8 +1,12 @@
 package com.example.easybasesampleadapterapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.Locale;
@@ -36,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.image9,
     };
 
+
+    Button button;
+
 //    Adapterをカスタムして使用する時に、BaseAdapterを継承して、カスタムリストを作成し、それをlistviewにセットする方法。
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ListView listView = findViewById(R.id.list_view);
+        button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SubActivity.class);
+                startActivity(intent);
+            }
+        });
 
         BaseAdapter baseAdapter = new TestAdapter(this.getApplicationContext(), R.layout.list_items, names, photos, emails);
 
